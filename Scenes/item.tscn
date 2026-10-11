@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bp3fy6kmf875v"]
+
+[ext_resource type="Script" uid="uid://c383h8qak0ybn" path="res://scripts/item.gd" id="1_ys0gr"]
+[ext_resource type="PackedScene" uid="uid://drmtvrhsmhjeo" path="res://sample assets/Burger_low-poly.glb" id="2_76mu4"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g4v7s"]
+height = 1.2397461
+
+[node name="Item" type="Area3D" unique_id=1476216012 groups=["pickable"]]
+script = ExtResource("1_ys0gr")
+
+[node name="Burger_low-poly" parent="." unique_id=1994511286 instance=ExtResource("2_76mu4")]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0.028971404, -0.2662363, 0.0017144084)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=719706442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.38012695, 0)
+shape = SubResource("CylinderShape3D_g4v7s")

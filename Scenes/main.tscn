@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cdojifg2r3s0u"]
+
+[ext_resource type="PackedScene" uid="uid://bh2xwm0k0p4y2" path="res://Scenes/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://orrepnswu0k6" path="res://Scenes/test_map.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://bp3fy6kmf875v" path="res://Scenes/item.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://c5dlu178iwy5v" path="res://Scenes/customer.tscn" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://caykwhwlqiq4s" path="res://Scenes/chef.tscn" id="5_kry3j"]
+
+[sub_resource type="Environment" id="Environment_yf5fn"]
+background_mode = 2
+ambient_light_source = 3
+ambient_light_color = Color(0.64687073, 0.8709374, 0.37442985, 1)
+ambient_light_energy = 1.5
+
+[node name="Main" type="Node3D" unique_id=804415501]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1009510426]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.69569, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=90725695]
+transform = Transform3D(1, 0, 0, 0, 0.35845968, 0.93354523, 0, -0.93354523, 0.35845968, 0, 14.506, 4.679)
+
+[node name="Player" parent="." unique_id=245703106 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2233708, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1199833613]
+environment = SubResource("Environment_yf5fn")
+
+[node name="TestMap" parent="." unique_id=679951183 instance=ExtResource("2_bo1nx")]
+transform = Transform3D(0.49, 0, 0, 0, 0.49, 0, 0, 0, 0.49, -1.3989801, 1, -3.4334211)
+
+[node name="Customer" parent="." unique_id=496643033 instance=ExtResource("4_jjvhh")]
+transform = Transform3D(-0.34144562, 0, -0.93990153, 0, 1, 0, 0.93990153, 0, -0.34144562, 8.999102, 2.9113922, -0.9758415)
+
+[node name="Customer2" parent="." unique_id=1973566919 instance=ExtResource("4_jjvhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39581966, 3.0249248, -7.9119873)
+
+[node name="Customer3" parent="." unique_id=125641187 instance=ExtResource("4_jjvhh")]
+transform = Transform3D(0.1691892, 0, 0.9855836, 0, 1, 0, -0.9855836, 0, 0.1691892, -9.072661, 2.9299555, -7.9119873)
+
+[node name="Chef" parent="." unique_id=1631540992 instance=ExtResource("5_kry3j")]
+transform = Transform3D(-0.7259261, 0, 0.6877727, 0, 1, 0, -0.6877727, 0, -0.7259261, -8.94126, 2.8387144, 5.4433436)
+item_scene = ExtResource("3_8gbba")

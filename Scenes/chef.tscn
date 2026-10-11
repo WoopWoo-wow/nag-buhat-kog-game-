@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://caykwhwlqiq4s"]
+
+[ext_resource type="Script" uid="uid://bdf5fy1yospmu" path="res://scripts/chef.gd" id="1_sqin4"]
+[ext_resource type="PackedScene" uid="uid://drygwijbbkghq" path="res://sample assets/Barbarian.glb" id="2_v0fah"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vr64p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+
+[node name="Chef" type="CharacterBody3D" unique_id=1631540992]
+script = ExtResource("1_sqin4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1437347529]
+shape = SubResource("CapsuleShape3D_vr64p")
+
+[node name="ChefInteractionArea" type="Area3D" parent="." unique_id=1236661479]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChefInteractionArea" unique_id=75211101]
+shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="Barbarian" parent="." unique_id=2098033695 instance=ExtResource("2_v0fah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09292793, -1.6187156, -0.0872525)
