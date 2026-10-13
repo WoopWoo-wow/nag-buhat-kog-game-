@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bpvjs6pilfp2t"]
+
+[ext_resource type="Script" uid="uid://dp8fepaa25md3" path="res://scripts/stick_of_butter.gd" id="1_a8qw8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mhq6o"]
+albedo_color = Color(0.7047416, 0.68730944, 0, 1)
+
+[node name="StickOfButter" type="CharacterBody3D" unique_id=1633466804]
+script = ExtResource("1_a8qw8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2093664694]
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="InteractButter" type="Area3D" parent="." unique_id=209890610]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractButter" unique_id=1399887297]
+shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=162752961]
+use_collision = true
+material = SubResource("StandardMaterial3D_mhq6o")

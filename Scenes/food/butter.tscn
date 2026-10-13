@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b3qwgdmg41cii"]
+
+[ext_resource type="Script" uid="uid://cmojlqtp1cqgh" path="res://scripts/butter.gd" id="1_cbbod"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yf5fn"]
+
+[node name="Butter" type="Area3D" unique_id=323956189]
+script = ExtResource("1_cbbod")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1849631654]
+mesh = SubResource("SphereMesh_g4v7s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1741652923]
+shape = SubResource("SphereShape3D_yf5fn")

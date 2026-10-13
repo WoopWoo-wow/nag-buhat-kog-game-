@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://mxivpnfedypw"]
+
+[ext_resource type="Texture2D" uid="uid://35gtkd0axcat" path="res://icon.svg" id="1_g7de7"]
+[ext_resource type="PackedScene" uid="uid://caykwhwlqiq4s" path="res://Scenes/foodchest/EggTray.tscn" id="2_q1odp"]
+[ext_resource type="PackedScene" uid="uid://cemenvrql4577" path="res://Scenes/foodchest/FlourPack.tscn" id="3_jbmu5"]
+[ext_resource type="PackedScene" uid="uid://bp3fy6kmf875v" path="res://Scenes/food/Eggs.tscn" id="3_mhq6o"]
+[ext_resource type="PackedScene" uid="uid://cjy0ottg56o3" path="res://Scenes/food/Flour.tscn" id="5_gtu24"]
+[ext_resource type="PackedScene" uid="uid://bpvjs6pilfp2t" path="res://Scenes/foodchest/StickOfButter.tscn" id="6_s6s2k"]
+[ext_resource type="PackedScene" uid="uid://b3qwgdmg41cii" path="res://Scenes/food/butter.tscn" id="7_e1r5u"]
+[ext_resource type="PackedScene" uid="uid://dpyhteqykldxh" path="res://Scenes/foodchest/sugar_pack.tscn" id="8_5t1xq"]
+[ext_resource type="PackedScene" uid="uid://ba1ya6qbs6f5b" path="res://Scenes/food/sugar.tscn" id="9_03q83"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7o0yc"]
+albedo_color = Color(0.6147698, 0.33458906, 9.62615e-08, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bo1nx"]
+albedo_texture = ExtResource("1_g7de7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gbba"]
+albedo_texture = ExtResource("1_g7de7")
+
+[node name="ItemsTestMap" type="Node3D" unique_id=1202203976]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=128838837]
+transform = Transform3D(0.575, 0, 0, 0, 0.575, 0, 0, 0, 0.575, -0.07662964, 0, -0.091846466)
+use_collision = true
+size = Vector3(62.20282, 1, 80.565865)
+material = SubResource("StandardMaterial3D_7o0yc")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1931942181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.702881, 0.75624704, 13.047699)
+use_collision = true
+size = Vector3(18.405762, 1, 1)
+material = SubResource("StandardMaterial3D_bo1nx")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=609794146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.032775164, 0.7562461, 15.378126)
+use_collision = true
+size = Vector3(0.9025879, 1, 3.6676636)
+material = SubResource("StandardMaterial3D_8gbba")
+
+[node name="Eggs" parent="." unique_id=1631540992 instance=ExtResource("2_q1odp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.853523, 0.7875004, 14.052357)
+item_scene = ExtResource("3_mhq6o")
+
+[node name="Flour" parent="." unique_id=1861791184 instance=ExtResource("3_jbmu5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.402971, 0.75166416, 14.047699)
+item_scene = ExtResource("5_gtu24")
+
+[node name="StickOfButter" parent="." unique_id=1633466804 instance=ExtResource("6_s6s2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.171341, 0.7482574, 14.060086)
+item_scene = ExtResource("7_e1r5u")
+
+[node name="SugarPack" parent="." unique_id=541992626 instance=ExtResource("8_5t1xq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.640308, 0.7482574, 14.060086)
+item_scene = ExtResource("9_03q83")

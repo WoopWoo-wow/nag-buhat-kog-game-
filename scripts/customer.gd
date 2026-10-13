@@ -1,68 +1,63 @@
 extends CharacterBody3D
-
-@export var move_speed: float = 4.0
-@export var wanted_item_group: String = "pickable"
-
-# Set these target positions when spawning/placing in the scene
-var target_position: Vector3 = Vector3.ZERO
-var exit_position: Vector3 = Vector3.ZERO
-
-enum State { MOVING_TO_COUNTER, WAITING_FOR_ORDER, LEAVING }
-var current_state: State = State.MOVING_TO_COUNTER
-
-@onready var order_label: Label3D = $Label3D
-@onready var customer_area: Area3D = $CustomerArea
-
+## Customer: walks to a spot, asks for a random item,
+## accepts ANY item you hand over, says thanks, walks back and disappears.
+##
+## Expected scene tree:
+##   Customer (CharacterBody3D)  <- this script
+##   ├── MeshInstance3D
+##   ├── CollisionShape3D
+##   └── Label3D
+ 
+signal served
+ 
+@export var items: Array[String] = ["Flour", "Eggs", "Sugar", "Butter"]
+@export var walk_speed: float = 3.0
+## Optional: a Marker3D where the customer waits. If empty, they wait where they spawn.
+@export var wait_marker: Node3D
+ 
+enum State { WALKING_IN, WAITING, LEAVING }
+ 
+@onready var label: Label3D = $Label3D
+ 
+var state: State = State.WALKING_IN
+var wanted_item: String = ""
+var start_pos: Vector3
+var wait_pos: Vector3
+ 
 func _ready() -> void:
-	customer_area.add_to_group("customer")
-	order_label.visible = false
-
+	add_to_group("customer")
+	start_pos = global_position
+	wait_pos = wait_marker.global_position if wait_marker else global_position
+	wanted_item = items.pick_random()
+	label.text = ""
+ 
 func _physics_process(delta: float) -> void:
-	match current_state:
-		State.MOVING_TO_COUNTER:
-			move_towards_target(target_position)
-			# Check if reached counter position (ignoring Y height)
-			var dist = Vector2(global_position.x - target_position.x, global_position.z - target_position.z).length()
-			if dist < 0.5:
-				current_state = State.WAITING_FOR_ORDER
-				show_order()
-
-		State.WAITING_FOR_ORDER:
-			velocity = Vector3.ZERO
-
+	match state:
+		State.WALKING_IN:
+			if _move_to(wait_pos, delta):
+				state = State.WAITING
+				label.text = "I need: %s" % wanted_item
 		State.LEAVING:
-			move_towards_target(exit_position)
-			var dist = Vector2(global_position.x - exit_position.x, global_position.z - exit_position.z).length()
-			if dist < 0.5:
-				queue_free() # Despawn customer once reached exit
-
-	move_and_slide()
-
-func move_towards_target(target: Vector3) -> void:
-	var dir = (target - global_position)
-	dir.y = 0
-	if dir.length() > 0.1:
-		dir = dir.normalized()
-		velocity.x = dir.x * move_speed
-		velocity.z = dir.z * move_speed
-		look_at(global_position + dir, Vector3.UP)
-	else:
-		velocity.x = 0
-		velocity.z = 0
-
-func show_order() -> void:
-	order_label.text = "I want: " + wanted_item_group.capitalize() + "!"
-	order_label.visible = true
-
-func receive_item(item: Node3D) -> bool:
-	if current_state != State.WAITING_FOR_ORDER:
-		return false
-		
-	# Check if handed item is valid
-	if item.is_in_group(wanted_item_group):
-		order_label.text = "Thank you!"
-		item.queue_free() # Consume/remove the item
-		current_state = State.LEAVING
+			if _move_to(start_pos, delta):
+				queue_free()
+ 
+func _move_to(target: Vector3, delta: float) -> bool:
+	var to_target := target - global_position
+	to_target.y = 0.0
+	if to_target.length() < 0.05:
 		return true
-		
+	var dir := to_target.normalized()
+	global_position += dir * walk_speed * delta
+	rotation.y = lerp_angle(rotation.y, atan2(dir.x, dir.z), 10.0 * delta)
 	return false
+ 
+## Called by the player when handing over an item.
+## Returns true if accepted (the player then removes the item).
+func receive_item(item: Node3D) -> bool:
+	if state != State.WAITING:
+		return false
+	print("Customer got: ", item.name, " (wanted: ", wanted_item, ")")
+	label.text = "Thanks!"
+	state = State.LEAVING
+	served.emit()
+	return true

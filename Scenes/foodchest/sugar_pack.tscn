@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dpyhteqykldxh"]
+
+[ext_resource type="Script" uid="uid://cq21twycrgtny" path="res://scripts/sugar_pack.gd" id="1_t477k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gybe4"]
+albedo_color = Color(0.9673056, 0.41249996, 0, 1)
+
+[node name="SugarPack" type="CharacterBody3D" unique_id=541992626]
+script = ExtResource("1_t477k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=160115944]
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1503556996]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=120533961]
+shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=387932182]
+use_collision = true
+material = SubResource("StandardMaterial3D_gybe4")

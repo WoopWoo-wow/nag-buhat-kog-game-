@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cemenvrql4577"]
+
+[ext_resource type="Script" uid="uid://cmrvpi4gywqv3" path="res://scripts/frieses.gd" id="1_m3644"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ju2xk"]
+albedo_color = Color(0.8765162, 2.3102762e-06, 0.5363158, 1)
+
+[node name="Fries" type="CharacterBody3D" unique_id=1861791184]
+script = ExtResource("1_m3644")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2095256962]
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="InteractiveArea" type="Area3D" parent="." unique_id=1764905196]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractiveArea" unique_id=673102910]
+shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1294352860]
+material = SubResource("StandardMaterial3D_ju2xk")

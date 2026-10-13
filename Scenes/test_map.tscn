@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://orrepnswu0k6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4v7s"]
-albedo_color = Color(0.5464423, 0.8622472, 0.770554, 1)
+albedo_color = Color(0.031979803, 0.25688067, 0.2944775, 1)
 
 [node name="TestMap" type="Node3D" unique_id=679951183]
 

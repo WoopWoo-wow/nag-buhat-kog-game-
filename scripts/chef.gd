@@ -31,4 +31,3 @@ func give_item_to(player) -> bool:
 	if order_label:
 		order_label.text = "I have nothing to give!"
 	return false
-
